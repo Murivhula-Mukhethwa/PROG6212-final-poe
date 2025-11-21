@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "HR Reports";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0"><i class="fas fa-chart-bar me-2"></i>HR Reports</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <!-- Claims Report -->
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fas fa-file-invoice-dollar me-2"></i>Claims Report</h5>
+                            </div>
+                            <div class="card-body">
+                                <form asp-action="GenerateClaimsReport" method="post">
+                                    <div class="mb-3">
+                                        <label class="form-label">From Date</label>
+                                        <input type="date" name="fromDate" class="form-control"
+                                               value="@DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd")" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">To Date</label>
+                                        <input type="date" name="toDate" class="form-control"
+                                               value="@DateTime.Now.ToString("yyyy-MM-dd")" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-download me-2"></i>Generate Claims Report
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Report -->
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fas fa-users me-2"></i>User Report</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-muted">Generate a comprehensive report of all users in the system.</p>
+                                <form asp-action="GenerateUserReport" method="post">
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fas fa-download me-2"></i>Generate User Report
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Report Instructions -->
+                <div class="alert alert-info">
+                    <h6><i class="fas fa-info-circle me-2"></i>Report Information</h6>
+                    <ul class="mb-0">
+                        <li>Claims Report: Generates a detailed report of all claims within the selected date range</li>
+                        <li>User Report: Generates a complete list of all system users with their details</li>
+                        <li>Reports are generated in text format for easy viewing and printing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

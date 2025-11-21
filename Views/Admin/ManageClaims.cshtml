@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CMCS.web2.Models.Claim>
+@{
+    ViewBag.Title = "Manage Claims - " + ViewBag.Role;
+}
+<h2>@ViewBag.Role - Claims</h2>
+
+<form method="get" class="form-inline mb-2">
+    <input name="search" value="@ViewBag.Search" class="form-control" placeholder="search..." />
+    <button class="btn btn-secondary" type="submit">Search</button>
+</form>
+
+<table class="table">
+    <thead><tr><th>Submitted</th><th>Lecturer</th><th>Hours</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.SubmittedDate</td>
+                
+                <td>@c.HoursWorked</td>
+                <td>@c.TotalAmount.ToString("C")</td>
+                <td>@c.Status</td>
+                <td>
+                    <a class="btn btn-sm btn-secondary" href="@Url.Action("Download", "Claim", new { id = c.ClaimId })">Download</a>
+                    @if (ViewBag.Role == "Coordinator")
+                    {
+                        <form method="post" asp-action="Verify" asp-route-id="@c.ClaimId" style="display:inline">
+                            <button class="btn btn-sm btn-success">Verify</button>
+                        </form>
+                    }
+                    @if (ViewBag.Role == "Manager")
+                    {
+                        <form method="post" asp-action="Approve" asp-route-id="@c.ClaimId" style="display:inline">
+                            <button class="btn btn-sm btn-success">Approve</button>
+                        </form>
+                        <form method="post" asp-action="Reject" asp-route-id="@c.ClaimId" style="display:inline">
+                            <input name="rejectionReason" placeholder="reason" />
+                            <button class="btn btn-sm btn-danger">Reject</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

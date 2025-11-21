@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\CMCS.web2.props" />
+</Project>

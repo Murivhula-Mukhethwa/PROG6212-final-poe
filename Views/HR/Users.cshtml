@@ -1,0 +1,99 @@
+﻿@model List<CMCS.web2.Models.User>
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                <h4 class="mb-0"><i class="fas fa-users me-2"></i>User Management</h4>
+                <a href="@Url.Action("CreateUser", "HR")" class="btn btn-light btn-sm">
+                    <i class="fas fa-plus me-1"></i>Add User
+                </a>
+            </div>
+            <div class="card-body">
+                @if (!Model.Any())
+                {
+                    <div class="text-center py-4">
+                        <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                        <h5>No Users Found</h5>
+                        <p class="text-muted">No users have been created yet.</p>
+                        <a href="@Url.Action("CreateUser", "HR")" class="btn btn-primary">Create First User</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Hourly Rate</th>
+                                    <th>Status</th>
+                                    <th>Created</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var user in Model)
+                                {
+                                    <tr>
+                                        <td>@user.Name @user.Surname</td>
+                                        <td>@user.Email</td>
+                                        <td>
+                                            <span class="badge @GetRoleBadgeClass(user.Role)">
+                                                @user.Role
+                                            </span>
+                                        </td>
+                                        <td>€@user.HourlyRate.ToString("N2")</td>
+                                        <td>
+                                            <span class="badge @(user.IsActive ? "bg-success" : "bg-danger")">
+                                                @(user.IsActive ? "Active" : "Inactive")
+                                            </span>
+                                        </td>
+                                        <td>@user.CreatedDate.ToString("dd/MM/yyyy")</td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <a href="@Url.Action("EditUser", "HR", new { id = user.UserId })"
+                                                   class="btn btn-outline-primary">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                @if (user.IsActive)
+                                                {
+                                                    <form asp-action="DeleteUser" method="post" class="d-inline">
+                                                        <input type="hidden" name="id" value="@user.UserId" />
+                                                        <button type="submit" class="btn btn-outline-danger"
+                                                                onclick="return confirm('Are you sure you want to deactivate this user?')">
+                                                            <i class="fas fa-user-slash"></i>
+                                                        </button>
+                                                    </form>
+                                                }
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions {
+    private string GetRoleBadgeClass(CMCS.web2.Models.UserRole role)
+    {
+        return role switch
+        {
+            CMCS.web2.Models.UserRole.HR => "bg-danger",
+            CMCS.web2.Models.UserRole.Lecturer => "bg-primary",
+            CMCS.web2.Models.UserRole.ProgrammeCoordinator => "bg-warning",
+            CMCS.web2.Models.UserRole.AcademicManager => "bg-info",
+            _ => "bg-secondary",
+        };
+    }
+}

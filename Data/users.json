@@ -1,0 +1,13 @@
+[
+  {
+    "UserId": "32b3a68e-0863-4cbd-8b86-83844134ce19",
+    "Email": "hr@university.com",
+    "Name": "HR",
+    "Surname": "Admin",
+    "HourlyRate": 0,
+    "Password": "hr123",
+    "Role": 0,
+    "CreatedDate": "2025-11-21T19:12:22.5357293Z",
+    "IsActive": true
+  }
+]
