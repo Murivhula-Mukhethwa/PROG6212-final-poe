@@ -2,7 +2,7 @@
 ## Github link: https://github.com/Murivhula-Mukhethwa/PROG6212-final-poe.git
 # CMCS Claims System – Part 3
 
-## 🚀 What’s New in This Version
+## What I updated from my part2 
 
 * **User Login Added** – Secure, session-based authentication
 * **HR Super User Role** – Full control over users and system management
@@ -10,7 +10,7 @@
 * **Improved Security** – Role-based permissions throughout the system
 * **Reporting Tools** – HR can generate claim and user reports
 
-## 👥 System Roles
+## System Roles
 
 | Role            | What They Can Do                            |
 | --------------- | ------------------------------------------- |
@@ -19,20 +19,20 @@
 | **Coordinator** | Verify lecturer claims                      |
 | **Manager**     | Approve verified claims                     |
 
-## 🔐 Default Test Logins
+## Default Test Logins
 
 * **HR:** `hr@university.com` / `hr123`
 * **Lecturer:** `lecturer@university.com` / `lecturer123`
 * **Coordinator:** `coordinator@university.com` / `coordinator123`
 * **Manager:** `manager@university.com` / `manager123`
 
-## 🛠️ How to Set Up
+## How to Set Up
 
 1. Run the SQL script provided in the **Database** folder using SSMS
 2. Update your **connection string** in `appsettings.json`
 3. Start the system with `dotnet run`
 
-## ✨ System Highlights
+##  System Highlights
 
 * Automatic user details filled into claims
 * Monthly hour checks (max 180 hours)
@@ -40,9 +40,9 @@
 * Dynamic menus based on user role
 * Built-in reporting for HR
 
-## 📁 Project Layout
+##  Project Layout
 
-```
+
 Controllers/    – Login, Admin, HR, Claims
 Models/         – Users, Claims, ViewModels
 Services/       – Repos, Encryption, Reporting
@@ -50,7 +50,7 @@ Data/           – EF Core DbContext
 Views/          – Pages for each role
 ```
 
-## 🔧 Technologies Used
+## Technologies Used
 
 * ASP.NET Core MVC
 * EF Core
