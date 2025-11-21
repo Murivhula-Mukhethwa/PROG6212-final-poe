@@ -2,7 +2,7 @@
 ## Github link: https://github.com/Murivhula-Mukhethwa/PROG6212-final-poe.git
 # CMCS Claims System – Part 3
 
-## What I updated from my part2 
+## What I updated from my part2 based on the lecturer's feedback
 
 * **User Login Added** – Secure, session-based authentication
 * **HR Super User Role** – Full control over users and system management
